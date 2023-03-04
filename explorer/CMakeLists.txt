@@ -4,7 +4,7 @@ project(
 )
 
 file(GLOB_RECURSE SOURCES "src/*.cc")
-file(GLOB_RECURSE HEADERS "include/*.h")
+file(GLOB_RECURSE HEADERS "include/*.hh")
 
 message(STATUS "Sources: ${SOURCES}")
 message(STATUS "Headers: ${HEADERS}")
@@ -19,13 +19,15 @@ target_link_libraries(
 		OpenGL::OpenGL
 		SDL2::SDL2
 		GLEW::GLEW
+	PUBLIC
+		utils
 )
 
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_20)
 
 target_include_directories(
 	${PROJECT_NAME}
-	PRIVATE
+	PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
@@ -44,5 +46,9 @@ target_compile_definitions(
 		${DEFINES}
 )
 
-# Copy shaders to build directory
-file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR})
+# Symbolic link of shaders to build directory
+execute_process(
+	COMMAND ${CMAKE_COMMAND} -E create_symlink
+	${CMAKE_CURRENT_SOURCE_DIR}/shaders
+	${CMAKE_CURRENT_BINARY_DIR}/shaders
+)

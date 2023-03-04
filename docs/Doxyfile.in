@@ -7,7 +7,7 @@ PROJECT_NAME = "fractals"
 PROJECT_NUMBER = "0.1.0"
 
 # Add sources
-INPUT = "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/README.md" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/explorer/src" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/docs/pages"
+INPUT = "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/README.md" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/utils" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/explorer" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/docs/pages"
 EXTRACT_ALL = YES
 RECURSIVE = YES
 OUTPUT_DIRECTORY = ""

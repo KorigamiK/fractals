@@ -12,6 +12,8 @@ find_package(OpenGL REQUIRED COMPONENTS OpenGL)
 find_package(SDL2 REQUIRED)
 find_package(GLEW REQUIRED)
 
+add_subdirectory(utils)
+
 add_subdirectory(explorer)
 
 enable_testing()
