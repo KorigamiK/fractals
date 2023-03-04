@@ -1,4 +1,4 @@
-# fractals
+# Fractals
 
 This is the fractals project.
 
