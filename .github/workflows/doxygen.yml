@@ -17,3 +17,13 @@ jobs:
           working-directory: "docs/"
           doxyfile-path: "Doxyfile"
           enable-latex: true
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
+          # publish_branch: gh-pages
+          # cname: docs.ros.org
+          # keep_files: true
+          # force_orphan: false
+          # allow_empty_commit: true
