@@ -1,6 +1,6 @@
 # Fractals
 
-This is the fractals project.
+This is the Fractals project.
 
 # Documentation
 
