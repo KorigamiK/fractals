@@ -6,9 +6,14 @@
 #include <string>
 
 /** Logger namespace.
- * @usage Logger::error("Shader compilation failed: %s", infoLog);
- * @usage Logger::warn("Shader compilation failed: %s", infoLog);
- * @usage Logger::info("Shader compilation failed: %s", infoLog);
+ * Usage:
+ * @code
+ * ...
+ *     Logger::error("Shader compilation failed: %s", infoLog);
+ *     Logger::warn("Shader compilation failed: %s", infoLog);
+ *     Logger::info("Shader compilation failed: %s", infoLog);
+ * ...
+ * @endcode
  */
 namespace Logger {
 
@@ -48,6 +53,7 @@ template <typename... Args>
 void warn(const char* format, Args... args) {
   log(Level::Warn, format, args...);
 }
+
 /** Log an info message.
  * @param format The format of the message.
  * @param args The arguments to the format.

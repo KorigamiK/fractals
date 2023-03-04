@@ -10,3 +10,4 @@ CMakeUserPresets.json
 docs/*
 !docs/Doxyfile
 !docs/Doxyfile.in
+!docs/style.css

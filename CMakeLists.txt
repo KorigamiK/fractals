@@ -32,7 +32,11 @@ if(GENERATE_DOCS)
 
 	find_package(Doxygen REQUIRED)
 	set(DOXYGEN_GENERATE_HTML YES)
-	configure_file(${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile @ONLY)
+	configure_file(
+		${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in # input
+		${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile # output
+		@ONLY
+	)
 	add_custom_target(
 		doc
 		COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile

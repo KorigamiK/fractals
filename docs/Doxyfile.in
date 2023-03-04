@@ -7,23 +7,23 @@ PROJECT_NAME = "fractals"
 PROJECT_NUMBER = "0.1.0"
 
 # Add sources
-INPUT = "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/README.md" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/utils" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/explorer" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/docs/pages"
+INPUT = "../README.md" "../CODE_OF_CONDUCT.md" "../HACKING.md" "../CONTRIBUTING.md" "../BUILDING.md" "../utils" "../explorer" "../docs/pages"
 EXTRACT_ALL = YES
 RECURSIVE = YES
 OUTPUT_DIRECTORY = ""
 
 # Use the README as a main page
-USE_MDFILE_AS_MAINPAGE = "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/README.md"
+USE_MDFILE_AS_MAINPAGE = "../README.md"
 
 # set relative include paths
 FULL_PATH_NAMES = YES
-STRIP_FROM_PATH = "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/include" "/home/korigamik/Dev/projects/game/graphics/opengl/fractals"
+STRIP_FROM_PATH = "../include" ".."
 STRIP_FROM_INC_PATH =
 
 # We use m.css to generate the html documentation, so we only need XML output
 GENERATE_XML = NO
 GENERATE_HTML = YES
-GENERATE_LATEX = YES
+GENERATE_LATEX = NO
 XML_PROGRAMLISTING = NO
 CREATE_SUBDIRS = YES
 
@@ -31,7 +31,7 @@ CREATE_SUBDIRS = YES
 # Disable to include only explicitly documented objects
 M_SHOW_UNDOCUMENTED = YES
 
-HTML_EXTRA_STYLESHEET  = "/home/korigamik/Dev/projects/game/graphics/opengl/fractals/docs/style.css"
+HTML_EXTRA_STYLESHEET  = "../docs/style.css"
 HTML_COLORSTYLE        = LIGHT 
 
 COMPACT_LATEX          = YES
