@@ -43,3 +43,6 @@ target_compile_definitions(
 	PRIVATE
 		${DEFINES}
 )
+
+# Copy shaders to build directory
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/shaders DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

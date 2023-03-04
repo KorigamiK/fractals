@@ -1,6 +1,8 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
+#include <fstream>
 #include <iostream>
+#include <sstream>
 
 namespace Logging {
 
@@ -19,6 +21,13 @@ void log(LogLevel level, const std::string& message) {
 }
 
 }  // namespace Logging
+
+std::string read_file(const std::string& filename) {
+  std::ifstream file(filename);
+  std::stringstream buffer;
+  buffer << file.rdbuf();
+  return buffer.str();
+}
 
 int main() {
   // Initialize SDL
@@ -66,15 +75,9 @@ int main() {
   // Set up the viewport
   glViewport(0, 0, 800, 600);
 
-  // Set up the vertex shader
-  const char* vertexShaderSource =
-      "#version 460\n"
-      "layout (location = 0) in vec3 vertexPosition;\n"
-      "void main()\n"
-      "{\n"
-      "   gl_Position = vec4(vertexPosition.x, vertexPosition.y, "
-      "vertexPosition.z, 1.0);\n"
-      "}\n";
+  // Load the initial vertex shader
+  std::string vertexShaderCode = read_file("shaders/vertex_shader.glsl");
+  const char* vertexShaderSource = vertexShaderCode.c_str();
 
   GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
   glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -93,14 +96,9 @@ int main() {
     exit(1);
   }
 
-  // Set up the fragment shader
-  const char* fragmentShaderSource =
-      "#version 460\n"
-      "out vec4 fragmentColor;\n"
-      "void main()\n"
-      "{\n"
-      "   fragmentColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
-      "}\n";
+  // Load the initial fragment shader
+  std::string fragmentShaderCode = read_file("shaders/fragment_shader.glsl");
+  const char* fragmentShaderSource = fragmentShaderCode.c_str();
 
   GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
   glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
@@ -118,7 +116,7 @@ int main() {
     exit(1);
   }
 
-  // Create a shader program and attach the shaders to it
+  // Create a shader program and attach the vertex and fragment shaders
   GLuint shaderProgram = glCreateProgram();
   glAttachShader(shaderProgram, vertexShader);
   glAttachShader(shaderProgram, fragmentShader);
@@ -136,54 +134,60 @@ int main() {
     exit(1);
   }
 
-  // Set up the triangle vertices
-  GLfloat vertices[] = {0.0f, 0.5f,  0.0f,  0.5f, -0.5f,
-                        0.0f, -0.5f, -0.5f, 0.0f};
+  // Delete the vertex and fragment shaders now that they're linked into the
+  // program
+  glDeleteShader(vertexShader);
+  glDeleteShader(fragmentShader);
 
-  // Set up the vertex buffer object
+  // Create a VAO (Vertex Array Object) to store the vertex buffer bindings and
+  // attribute config
+  GLuint vao;
+  glGenVertexArrays(1, &vao);
+  glBindVertexArray(vao);
+
+  // Create a VBO (Vertex Buffer Object) to store the vertex data
+  float vertices[] = {-0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f};
+
   GLuint vbo;
   glGenBuffers(1, &vbo);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-  // Set up the vertex array object
-  GLuint vao;
-  glGenVertexArrays(1, &vao);
-  glBindVertexArray(vao);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
+  // Configure the vertex attribute pointers
+  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
+                        static_cast<void*>(0));
   glEnableVertexAttribArray(0);
 
-  // Main loop
+  // Render loop
   bool quit = false;
-  SDL_Event event;
   while (!quit) {
-    // Process events
+    SDL_Event event;
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {
         quit = true;
       }
     }
-
-    // Render
-    glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+    // Set the clear color to black and clear the screen
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+
+    // Use the shader program
     glUseProgram(shaderProgram);
+
+    // Bind the VAO and draw the triangle
     glBindVertexArray(vao);
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    glBindVertexArray(0);
 
+    // Swap buffers
     SDL_GL_SwapWindow(window);
   }
 
   // Clean up
-  glDeleteProgram(shaderProgram);
-  glDeleteShader(fragmentShader);
-  glDeleteShader(vertexShader);
   glDeleteVertexArrays(1, &vao);
   glDeleteBuffers(1, &vbo);
+  glDeleteProgram(shaderProgram);
   SDL_GL_DeleteContext(context);
   SDL_DestroyWindow(window);
   SDL_Quit();
-
   return 0;
 }
