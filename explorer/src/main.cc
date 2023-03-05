@@ -7,8 +7,8 @@
 #include "logger.hh"
 #include "window.hh"
 
-#define WIDTH 480
-#define HEIGHT 360
+#define WIDTH 800
+#define HEIGHT 600
 
 auto main(int argc, const char* argv[]) -> int {
   (void)argc;

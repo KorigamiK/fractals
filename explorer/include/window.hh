@@ -2,7 +2,7 @@
 
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
-#include <glm/glm.hpp>
+
 #include <glm/vec2.hpp>
 #include <memory>
 #include <string>
@@ -25,10 +25,10 @@ struct UniformLocations {
 class Window {
  private:
   int width, height;
-  bool running;
-  int frameCount, fps;
+  bool running{true};
+  int frameCount{0}, fps{0};
   SceneData sceneData;
-  bool shouldReloadShaders;
+  bool shouldReloadShaders{false};
   Uint32 lastFrameTime;
   SDL_Window* window;
   SDL_GLContext glContext;

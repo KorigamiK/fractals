@@ -1,16 +1,14 @@
 #include "window.hh"
 
+#include <glm/glm.hpp>
+
 Window::Window(const std::string& title,
                int width,
                int height,
                SceneData sceneData)
     : width(width),
       height(height),
-      running(true),
-      frameCount(0),
-      fps(0),
       sceneData(sceneData),
-      shouldReloadShaders(false),
       lastFrameTime(SDL_GetTicks()) {
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     Logger::error("Could not initialize SDL");
@@ -61,7 +59,6 @@ Window::Window(const std::string& title,
   shader = std::make_unique<Shader>("shaders/vertex_shader.glsl",
                                     "shaders/fragment_shader.glsl");
 
-  // Set up the viewport
   glViewport(0, 0, width, height);
   shader->use();
 
@@ -100,7 +97,11 @@ void Window::update() {
 }
 
 void Window::pollEvents() {
-  SDL_Event event;
+  static SDL_Event event;
+
+  static bool isDragging = false;
+  static glm::vec2 dragStart(0.0f, 0.0f);
+
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
       case SDL_QUIT:
@@ -108,8 +109,11 @@ void Window::pollEvents() {
         break;
 
       case SDL_WINDOWEVENT:
-        if (event.window.event == SDL_WINDOWEVENT_RESIZED)
+        if (event.window.event == SDL_WINDOWEVENT_RESIZED) {
           glViewport(0, 0, event.window.data1, event.window.data2);
+          width = event.window.data1;
+          height = event.window.data2;
+        }
         break;
 
       case SDL_KEYDOWN:
@@ -145,13 +149,56 @@ void Window::pollEvents() {
         }
         break;
 
-      case SDL_MOUSEWHEEL:
-        if (event.wheel.y > 0) {
-          sceneData.zoom *= 0.9f;
-        } else if (event.wheel.y < 0) {
-          sceneData.zoom *= 1.1f;
-        }
+      case SDL_MOUSEWHEEL: {
+        int x, y;
+        SDL_GetMouseState(&x, &y);
+        glm::vec2 cursor_pos =
+            glm::vec2(x, y) / glm::vec2(width, height) * 2.0f - 1.0f;
+        cursor_pos.y *= -1.0f;
+        float new_zoom =
+            sceneData.zoom * static_cast<float>(pow(0.9f, event.wheel.y));
+        glm::vec2 center_offset =
+            cursor_pos / sceneData.zoom - cursor_pos / new_zoom;
+        sceneData.center += center_offset;
+        sceneData.zoom = new_zoom;
+        glUniform2f(uniformLocations.center, sceneData.center.x,
+                    sceneData.center.y);
         glUniform1f(uniformLocations.zoom, sceneData.zoom);
+      } break;
+
+      case SDL_MOUSEBUTTONDOWN:
+        switch (event.button.button) {
+          case SDL_BUTTON_LEFT:
+            isDragging = true;
+            dragStart.x = static_cast<float>(event.button.x);
+            dragStart.y = static_cast<float>(event.button.y);
+            break;
+          default:
+            break;
+        }
+        break;
+
+      case SDL_MOUSEMOTION:
+        if (isDragging) {
+          glm::vec2 currentMousePos = glm::vec2(event.motion.x, event.motion.y);
+          glm::vec2 delta = (currentMousePos - dragStart) /
+                            glm::vec2(width, height) / sceneData.zoom * 2.0f;
+          delta.y *= -1.0f;
+          sceneData.center -= delta;
+          dragStart = currentMousePos;
+          glUniform2f(uniformLocations.center, sceneData.center.x,
+                      sceneData.center.y);
+        }
+        break;
+
+      case SDL_MOUSEBUTTONUP:
+        switch (event.button.button) {
+          case SDL_BUTTON_LEFT:
+            isDragging = false;
+            break;
+          default:
+            break;
+        }
         break;
 
       default:

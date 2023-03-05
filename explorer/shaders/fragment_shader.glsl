@@ -1,5 +1,7 @@
 #version 460
 
+precision highp float;
+
 out vec4 out_color;
 
 in vec2 v_texcoord;
