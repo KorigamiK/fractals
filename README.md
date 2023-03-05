@@ -1,6 +1,9 @@
 # Fractals
 
-This is the Fractals project.
+Fractals is a fractal generator. It can generate the following fractals:
+
+* Mandelbrot set
+* ... and more to come
 
 # Documentation
 
