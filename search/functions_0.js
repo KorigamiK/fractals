@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['compilefragmentshader_0',['compileFragmentShader',['../d9/d69/classShader.html#a6dec2286c59b496dcbbb344f3d9e258a',1,'Shader']]],
-  ['compilevertexshader_1',['compileVertexShader',['../d9/d69/classShader.html#a9ac9c21cb2ca4afabd89f7bbc01d5c31',1,'Shader']]]
+  ['clear_0',['clear',['../dc/dc4/classWindow.html#a38bc43bdd1a97e5de7f346ba4c3957ef',1,'Window']]],
+  ['compileshader_1',['compileShader',['../d9/d69/classShader.html#a6201a6bb26c3d4598a96fe6b5bd8f420',1,'Shader']]]
 ];

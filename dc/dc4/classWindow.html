@@ -81,10 +81,16 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa75e2e442088a062e3f7751e0f33a63d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#aa75e2e442088a062e3f7751e0f33a63d">Window</a> (const std::string &amp;title, int width, int height)</td></tr>
-<tr class="separator:aa75e2e442088a062e3f7751e0f33a63d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0868aaa755b56287d7707012f4465d8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#ab0868aaa755b56287d7707012f4465d8">Window</a> (const std::string &amp;title, int width, int height, <a class="el" href="../../d5/d55/structSceneData.html">SceneData</a> sceneData={ .zoom=1.0f,.center=glm::vec2(0.0f, 0.0f),.maxIterations=100, })</td></tr>
+<tr class="separator:ab0868aaa755b56287d7707012f4465d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a245d821e6016fa1f6970ccbbedd635f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#a245d821e6016fa1f6970ccbbedd635f6">~Window</a> ()</td></tr>
 <tr class="separator:a245d821e6016fa1f6970ccbbedd635f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8faf8a1d21ecadcd1d9cb4c1f7d98cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d5/d55/structSceneData.html">SceneData</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#aa8faf8a1d21ecadcd1d9cb4c1f7d98cb">getSceneData</a> ()</td></tr>
+<tr class="separator:aa8faf8a1d21ecadcd1d9cb4c1f7d98cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38bc43bdd1a97e5de7f346ba4c3957ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#a38bc43bdd1a97e5de7f346ba4c3957ef">clear</a> ()</td></tr>
+<tr class="separator:a38bc43bdd1a97e5de7f346ba4c3957ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59515fc5a56e86d5a46d771595daac55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#a59515fc5a56e86d5a46d771595daac55">update</a> ()</td></tr>
+<tr class="separator:a59515fc5a56e86d5a46d771595daac55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa5e409ecd45b4430ed72f4872a8f667f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#aa5e409ecd45b4430ed72f4872a8f667f">pollEvents</a> ()</td></tr>
 <tr class="separator:aa5e409ecd45b4430ed72f4872a8f667f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6ffedb8d12d5551bdb4c298de87ed56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#af6ffedb8d12d5551bdb4c298de87ed56">swapBuffers</a> ()</td></tr>
@@ -95,18 +101,13 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a60757b2b0dbcec9889e3a09f5655adbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53329abfc23df8a908ce7002c88dc244"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#a53329abfc23df8a908ce7002c88dc244">isRunning</a> () const</td></tr>
 <tr class="separator:a53329abfc23df8a908ce7002c88dc244"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad382b23fade8665f46424b392c49fc57"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dc/dc4/classWindow.html#ad382b23fade8665f46424b392c49fc57">shouldReloadShader</a> ()</td></tr>
-<tr class="separator:ad382b23fade8665f46424b392c49fc57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="aa75e2e442088a062e3f7751e0f33a63d" name="aa75e2e442088a062e3f7751e0f33a63d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa75e2e442088a062e3f7751e0f33a63d">&#9670;&#160;</a></span>Window()</h2>
+<a id="ab0868aaa755b56287d7707012f4465d8" name="ab0868aaa755b56287d7707012f4465d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0868aaa755b56287d7707012f4465d8">&#9670;&#160;</a></span>Window()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Window::Window </td>
@@ -124,7 +125,13 @@ Public Member Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>height</em>&#160;</td>
+          <td class="paramname"><em>height</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d5/d55/structSceneData.html">SceneData</a>&#160;</td>
+          <td class="paramname"><em>sceneData</em> = <code>{&#160;.zoom&#160;=&#160;1.0f,&#160;.center&#160;=&#160;glm::vec2(0.0f,&#160;0.0f),&#160;.maxIterations&#160;=&#160;100,&#160;}</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -132,11 +139,6 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -146,9 +148,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Window::~Window </td>
@@ -157,16 +156,28 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a38bc43bdd1a97e5de7f346ba4c3957ef" name="a38bc43bdd1a97e5de7f346ba4c3957ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38bc43bdd1a97e5de7f346ba4c3957ef">&#9670;&#160;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Window::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a60757b2b0dbcec9889e3a09f5655adbe" name="a60757b2b0dbcec9889e3a09f5655adbe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a60757b2b0dbcec9889e3a09f5655adbe">&#9670;&#160;</a></span>getHeight()</h2>
 
@@ -181,6 +192,31 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8faf8a1d21ecadcd1d9cb4c1f7d98cb" name="aa8faf8a1d21ecadcd1d9cb4c1f7d98cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8faf8a1d21ecadcd1d9cb4c1f7d98cb">&#9670;&#160;</a></span>getSceneData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d5/d55/structSceneData.html">SceneData</a> &amp; Window::getSceneData </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -247,9 +283,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Window::pollEvents </td>
@@ -258,36 +291,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="ad382b23fade8665f46424b392c49fc57" name="ad382b23fade8665f46424b392c49fc57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad382b23fade8665f46424b392c49fc57">&#9670;&#160;</a></span>shouldReloadShader()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Window::shouldReloadShader </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -297,9 +300,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Window::swapBuffers </td>
@@ -308,17 +308,30 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<a id="a59515fc5a56e86d5a46d771595daac55" name="a59515fc5a56e86d5a46d771595daac55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59515fc5a56e86d5a46d771595daac55">&#9670;&#160;</a></span>update()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Window::update </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>explorer/include/<a class="el" href="../../d1/d60/window_8hh_source.html">window.hh</a></li>
+<li>explorer/src/<a class="el" href="../../d7/d60/window_8cc.html">window.cc</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

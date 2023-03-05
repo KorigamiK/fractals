@@ -87,10 +87,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aff01df87e8a102f270b5b135a295e59d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d3a2d0c4d1dc1c61338459e9ae09d8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#a7d3a2d0c4d1dc1c61338459e9ae09d8c">reload</a> ()</td></tr>
 <tr class="separator:a7d3a2d0c4d1dc1c61338459e9ae09d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ac9c21cb2ca4afabd89f7bbc01d5c31"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#a9ac9c21cb2ca4afabd89f7bbc01d5c31">compileVertexShader</a> (const char *source)</td></tr>
-<tr class="separator:a9ac9c21cb2ca4afabd89f7bbc01d5c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dec2286c59b496dcbbb344f3d9e258a"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#a6dec2286c59b496dcbbb344f3d9e258a">compileFragmentShader</a> (const char *source)</td></tr>
-<tr class="separator:a6dec2286c59b496dcbbb344f3d9e258a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6201a6bb26c3d4598a96fe6b5bd8f420"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#a6201a6bb26c3d4598a96fe6b5bd8f420">compileShader</a> (GLenum shaderType, const char *source)</td></tr>
+<tr class="separator:a6201a6bb26c3d4598a96fe6b5bd8f420"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3c7896754f0e1fca8bde860cfef63832"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#a3c7896754f0e1fca8bde860cfef63832">use</a> () const</td></tr>
 <tr class="separator:a3c7896754f0e1fca8bde860cfef63832"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1a56d6c299bd7eaa18c2e142ef7bd9f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#ab1a56d6c299bd7eaa18c2e142ef7bd9f">setBool</a> (const std::string &amp;name, bool value) const</td></tr>
@@ -99,6 +97,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad362e2b654cd95a3574cd505411e41fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe7367621f74c2d26431d8ac15252bf3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#afe7367621f74c2d26431d8ac15252bf3">setFloat</a> (const std::string &amp;name, float value) const</td></tr>
 <tr class="separator:afe7367621f74c2d26431d8ac15252bf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbae19c1939033206a01123eab87a01b"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#abbae19c1939033206a01123eab87a01b">getProgram</a> () const</td></tr>
+<tr class="separator:abbae19c1939033206a01123eab87a01b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e5a3a988cbd6f773fab0177dfd2e1f4"><td class="memItemLeft" align="right" valign="top">GLint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d69/classShader.html#a9e5a3a988cbd6f773fab0177dfd2e1f4">getUniformLocation</a> (const std::string &amp;name) const</td></tr>
+<tr class="separator:a9e5a3a988cbd6f773fab0177dfd2e1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a744a01d74cb7e9dc7c81a82a7e63cfd9" name="a744a01d74cb7e9dc7c81a82a7e63cfd9"></a>
@@ -106,9 +108,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Shader::Shader </td>
@@ -128,11 +127,6 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -142,9 +136,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Shader::~Shader </td>
@@ -153,18 +144,41 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a6dec2286c59b496dcbbb344f3d9e258a" name="a6dec2286c59b496dcbbb344f3d9e258a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6dec2286c59b496dcbbb344f3d9e258a">&#9670;&#160;</a></span>compileFragmentShader()</h2>
+<a id="a6201a6bb26c3d4598a96fe6b5bd8f420" name="a6201a6bb26c3d4598a96fe6b5bd8f420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6201a6bb26c3d4598a96fe6b5bd8f420">&#9670;&#160;</a></span>compileShader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Shader::compileShader </td>
+          <td>(</td>
+          <td class="paramtype">GLenum&#160;</td>
+          <td class="paramname"><em>shaderType</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>source</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbae19c1939033206a01123eab87a01b" name="abbae19c1939033206a01123eab87a01b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbae19c1939033206a01123eab87a01b">&#9670;&#160;</a></span>getProgram()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -173,11 +187,10 @@ Public Member Functions</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">GLuint Shader::compileFragmentShader </td>
+          <td class="memname">GLuint Shader::getProgram </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>source</em></td><td>)</td>
-          <td></td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
   </td>
@@ -189,28 +202,20 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9ac9c21cb2ca4afabd89f7bbc01d5c31" name="a9ac9c21cb2ca4afabd89f7bbc01d5c31"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ac9c21cb2ca4afabd89f7bbc01d5c31">&#9670;&#160;</a></span>compileVertexShader()</h2>
+<a id="a9e5a3a988cbd6f773fab0177dfd2e1f4" name="a9e5a3a988cbd6f773fab0177dfd2e1f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e5a3a988cbd6f773fab0177dfd2e1f4">&#9670;&#160;</a></span>getUniformLocation()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">GLuint Shader::compileVertexShader </td>
+          <td class="memname">GLint Shader::getUniformLocation </td>
           <td>(</td>
-          <td class="paramtype">const char *&#160;</td>
-          <td class="paramname"><em>source</em></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -220,9 +225,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Shader::reload </td>
@@ -231,11 +233,6 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -245,9 +242,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Shader::setBool </td>
@@ -267,11 +261,6 @@ Public Member Functions</h2></td></tr>
           <td></td><td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -281,9 +270,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Shader::setFloat </td>
@@ -303,11 +289,6 @@ Public Member Functions</h2></td></tr>
           <td></td><td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -317,9 +298,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Shader::setInt </td>
@@ -339,11 +317,6 @@ Public Member Functions</h2></td></tr>
           <td></td><td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -353,9 +326,6 @@ Public Member Functions</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Shader::use </td>
@@ -364,17 +334,13 @@ Public Member Functions</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li>explorer/include/<a class="el" href="../../d3/dff/shader_8hh_source.html">shader.hh</a></li>
+<li>explorer/src/<a class="el" href="../../d4/deb/shader_8cc.html">shader.cc</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -105,9 +105,9 @@ Functions</h2></td></tr>
 <div class="line">    <a class="code hl_function" href="../../db/d64/namespaceLogger.html#a1ae3fecd5011e728f51e1320b095667b">Logger::warn</a>(<span class="stringliteral">&quot;Shader compilation failed: %s&quot;</span>, infoLog);</div>
 <div class="line">    <a class="code hl_function" href="../../db/d64/namespaceLogger.html#a71e771235f93a02bb3dbc35e3e25246e">Logger::info</a>(<span class="stringliteral">&quot;Shader compilation failed: %s&quot;</span>, infoLog);</div>
 <div class="line">...</div>
-<div class="ttc" id="anamespaceLogger_html_a1ae3fecd5011e728f51e1320b095667b"><div class="ttname"><a href="../../db/d64/namespaceLogger.html#a1ae3fecd5011e728f51e1320b095667b">Logger::warn</a></div><div class="ttdeci">void warn(const char *format, Args... args)</div><div class="ttdef"><b>Definition:</b> logger.hh:53</div></div>
-<div class="ttc" id="anamespaceLogger_html_a279949c2e766d40893a889492809f940"><div class="ttname"><a href="../../db/d64/namespaceLogger.html#a279949c2e766d40893a889492809f940">Logger::error</a></div><div class="ttdeci">void error(const char *format, Args... args)</div><div class="ttdef"><b>Definition:</b> logger.hh:44</div></div>
-<div class="ttc" id="anamespaceLogger_html_a71e771235f93a02bb3dbc35e3e25246e"><div class="ttname"><a href="../../db/d64/namespaceLogger.html#a71e771235f93a02bb3dbc35e3e25246e">Logger::info</a></div><div class="ttdeci">void info(const char *format, Args... args)</div><div class="ttdef"><b>Definition:</b> logger.hh:62</div></div>
+<div class="ttc" id="anamespaceLogger_html_a1ae3fecd5011e728f51e1320b095667b"><div class="ttname"><a href="../../db/d64/namespaceLogger.html#a1ae3fecd5011e728f51e1320b095667b">Logger::warn</a></div><div class="ttdeci">void warn(const char *format, Args... args)</div><div class="ttdef"><b>Definition:</b> logger.hh:55</div></div>
+<div class="ttc" id="anamespaceLogger_html_a279949c2e766d40893a889492809f940"><div class="ttname"><a href="../../db/d64/namespaceLogger.html#a279949c2e766d40893a889492809f940">Logger::error</a></div><div class="ttdeci">void error(const char *format, Args... args)</div><div class="ttdef"><b>Definition:</b> logger.hh:46</div></div>
+<div class="ttc" id="anamespaceLogger_html_a71e771235f93a02bb3dbc35e3e25246e"><div class="ttname"><a href="../../db/d64/namespaceLogger.html#a71e771235f93a02bb3dbc35e3e25246e">Logger::info</a></div><div class="ttdeci">void info(const char *format, Args... args)</div><div class="ttdef"><b>Definition:</b> logger.hh:64</div></div>
 </div><!-- fragment --> </div><h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ad766a24576ea8b27ad9d5649cef46d8f" name="ad766a24576ea8b27ad9d5649cef46d8f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad766a24576ea8b27ad9d5649cef46d8f">&#9670;&#160;</a></span>Level</h2>
@@ -216,6 +216,9 @@ template&lt;typename... Args&gt; </div>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Logger::log </td>
@@ -241,6 +244,11 @@ template&lt;typename... Args&gt; </div>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p >Log a formatted message. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
