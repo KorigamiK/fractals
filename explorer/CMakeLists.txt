@@ -19,6 +19,7 @@ target_link_libraries(
 		OpenGL::OpenGL
 		SDL2::SDL2
 		GLEW::GLEW
+		glm
 	PUBLIC
 		utils
 )
@@ -29,6 +30,7 @@ target_include_directories(
 	${PROJECT_NAME}
 	PUBLIC
 		${CMAKE_CURRENT_SOURCE_DIR}/include
+		${GLM_INCLUDE_DIRS}
 )
 
 target_compile_options(

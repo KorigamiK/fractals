@@ -1,63 +1,51 @@
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
+
+#include <glm/gtc/type_ptr.hpp>
 #include <string>
 
 #include "logger.hh"
-#include "shader.hh"
 #include "window.hh"
 
+#define WIDTH 480
+#define HEIGHT 360
+
 int main() {
-  // Initialize SDL and create a window
-  Window window("Triangle", 800, 600);
+  Window window("Triangle", WIDTH, HEIGHT);
 
-  // Load the initial vertex shader and fragment shader
-  std::string vertexShaderFile = "shaders/vertex_shader.glsl";
-  std::string fragmentShaderFile = "shaders/fragment_shader.glsl";
-  Shader shader(vertexShaderFile.c_str(), fragmentShaderFile.c_str());
-
-  // Create a VAO (Vertex Array Object) and VBO (Vertex Buffer Object) to store
-  // the vertex data
-  float vertices[] = {-0.5f, -0.5f, 0.0f,   // top left
-                      0.5f,  -0.5f, 0.0f,   // top right
-                      0.0f,  0.5f,  0.0f};  // bottom
-  GLuint vao, vbo;
-  glGenVertexArrays(1, &vao);
+  // /*
+  // set up vertex buffer object and vertex array object
+  GLfloat vertices[] = {-1.0f, -1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 1.0f};
+  GLuint vbo;
   glGenBuffers(1, &vbo);
-  glBindVertexArray(vao);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-  glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float),
-                        static_cast<void*>(0));
-  glEnableVertexAttribArray(0);
 
-  // Set up the viewport
-  glViewport(0, 0, window.getWidth(), window.getHeight());
+  GLuint vao;
+  glGenVertexArrays(1, &vao);
+  glBindVertexArray(vao);
+  glEnableVertexAttribArray(0);
+  glBindBuffer(GL_ARRAY_BUFFER, vbo);
+  glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
+  // */
 
   try {
-    // Main loop
     while (window.isRunning()) {
-      // Handle events
-      window.pollEvents();
+      window.update();
+      window.clear();
 
-      if (window.shouldReloadShader()) {
-        Logger::info("Reloading shaders");
-        shader.reload();
-      }
+      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-      // Clear the screen
-      glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-      // Draw the triangle
-      shader.use();
-      glBindVertexArray(vao);
-      glDrawArrays(GL_TRIANGLES, 0, 3);
-
-      // Swap buffers
       window.swapBuffers();
     }
   } catch (const std::exception& e) {
     Logger::error(e.what());
   }
+
+  Logger::info("Exiting");
+
+  glDeleteVertexArrays(1, &vao);
+  glDeleteBuffers(1, &vbo);
 
   return 0;
 }

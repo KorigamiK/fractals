@@ -11,3 +11,4 @@ docs/*
 !docs/Doxyfile
 !docs/Doxyfile.in
 !docs/style.css
+explorer/src/test.cpp

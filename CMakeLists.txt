@@ -11,6 +11,7 @@ project(
 find_package(OpenGL REQUIRED COMPONENTS OpenGL)
 find_package(SDL2 REQUIRED)
 find_package(GLEW REQUIRED)
+find_package(glm REQUIRED)
 
 add_subdirectory(utils)
 
@@ -26,9 +27,9 @@ add_custom_target(
 	DEPENDS test
 )
 
-set(GENERATE_DOCS ON CACHE BOOL "Generate documentation")
+set(GENERATE_DOXYFILE ON CACHE BOOL "Generate documentation")
 
-if(GENERATE_DOCS)
+if(GENERATE_DOXYFILE)
 
 	find_package(Doxygen REQUIRED)
 	set(DOXYGEN_GENERATE_HTML YES)
@@ -37,12 +38,13 @@ if(GENERATE_DOCS)
 		${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile # output
 		@ONLY
 	)
-	add_custom_target(
-		doc
-		COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile
-		WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs
-		COMMENT "Generating API documentation with Doxygen"
-		VERBATIM
-	)
 
 endif()
+
+add_custom_target(
+	doc
+	COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile
+	WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/docs
+	COMMENT "Generating API documentation with Doxygen"
+	VERBATIM
+)
