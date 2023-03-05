@@ -1,4 +1,6 @@
 #pragma once
+#ifndef LOGGER_NAMESPACE_H
+#define LOGGER_NAMESPACE_H
 
 #include <SDL2/SDL.h>
 
@@ -28,7 +30,7 @@ enum class Level {
  * @param format The format of the message.
  * @param ... The arguments to the format.
  */
-void log(Level level, const char* format, ...) {
+inline void log(Level level, const char* format, ...) {
   va_list args;
   va_start(args, format);
   SDL_LogMessageV(SDL_LOG_CATEGORY_APPLICATION,
@@ -64,3 +66,5 @@ void info(const char* format, Args... args) {
 }
 
 }  // namespace Logger
+
+#endif  // LOGGER_NAMESPACE_H

@@ -10,11 +10,12 @@
 #define WIDTH 480
 #define HEIGHT 360
 
-int main() {
-  Window window("Triangle", WIDTH, HEIGHT);
+auto main(int argc, const char* argv[]) -> int {
+  (void)argc;
+  (void)argv;
 
-  // /*
-  // set up vertex buffer object and vertex array object
+  Window window("The Mandlebrot", WIDTH, HEIGHT);
+
   GLfloat vertices[] = {-1.0f, -1.0f, -1.0f, 1.0f, 1.0f, -1.0f, 1.0f, 1.0f};
   GLuint vbo;
   glGenBuffers(1, &vbo);
@@ -27,7 +28,6 @@ int main() {
   glEnableVertexAttribArray(0);
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
-  // */
 
   try {
     while (window.isRunning()) {
@@ -39,7 +39,7 @@ int main() {
       window.swapBuffers();
     }
   } catch (const std::exception& e) {
-    Logger::error(e.what());
+    Logger::error("Exception: %s", e.what());
   }
 
   Logger::info("Exiting");
