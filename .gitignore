@@ -7,7 +7,7 @@ cmake-build-*/
 prefix/
 CMakeLists.txt.user
 CMakeUserPresets.json
-docs/*
+docs/
 !docs/Doxyfile
 !docs/Doxyfile.in
 !docs/style.css
