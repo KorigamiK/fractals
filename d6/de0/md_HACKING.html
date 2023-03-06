@@ -75,9 +75,9 @@ $(function() {
 <div class="contents">
 <div class="textblock"><p >Here is some wisdom to help you build and test this project as a developer and potential contributor.</p>
 <p >If you plan to contribute, please read the <a class="el" href="../../d2/dc1/md_CONTRIBUTING.html">CONTRIBUTING</a> guide.</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Building and testing</h1>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Presets</h2>
 <p >This project makes use of <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">presets</a> to simplify the process of configuring the project. As a developer, you are recommended to always have the <a href="https://cmake.org/download/">latest CMake version</a> installed to make use of the latest Quality-of-Life additions.</p>
 <p >You have a few options to pass <code>fractals_DEVELOPER_MODE</code> to the configure command, but this project prefers to use presets.</p>
@@ -119,7 +119,7 @@ Presets</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p >You should replace <code>&lt;os&gt;</code> in your newly created presets file with the name of the operating system you have, which may be <code>win64</code>, <code>linux</code> or <code>darwin</code>. You can see what these correspond to in the <a href="../../CMakePresets.json"><code>CMakePresets.json</code></a> file.</p>
 <p ><code>CMakeUserPresets.json</code> is also the perfect place in which you can put all sorts of things that you would otherwise want to pass to the configure command in the terminal.</p>
-<h2><a class="anchor" id="autotoc_md8"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Configure, build and test</h2>
 <p >If you followed the above instructions, then you can configure, build and test the project respectively with the following commands from the project root on any operating system with any build system:</p>
 <div class="fragment"><div class="line">cmake --preset=dev</div>
@@ -127,7 +127,7 @@ Configure, build and test</h2>
 <div class="line">ctest --preset=dev</div>
 </div><!-- fragment --><p >If you are using a compatible editor (e.g. VSCode) or IDE (e.g. CLion, VS), you will also be able to select the above created user presets for automatic integration.</p>
 <p >Please note that both the build and test commands accept a <code>-j</code> flag to specify the number of jobs to use, which should ideally be specified to the number of threads your CPU has. You may also want to add that to your preset using the <code>jobs</code> property, see the <a href="https://cmake.org/cmake/help/latest/manual/cmake-presets.7.html">presets documentation</a> for more details.</p>
-<h2><a class="anchor" id="autotoc_md9"></a>
+<h2><a class="anchor" id="autotoc_md10"></a>
 Developer mode targets</h2>
 <p >These are targets you may invoke using the build command from above, with an additional <code>-t &lt;target&gt;</code> flag: </p>
 </div></div><!-- contents -->

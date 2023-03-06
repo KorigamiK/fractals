@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['width_0',['WIDTH',['../d9/d0f/main_8cc.html#a241aeeb764887ae5e3de58b98f04b16d',1,'main.cc']]]
+  ['logger_5fnamespace_5fh_0',['LOGGER_NAMESPACE_H',['../d5/dc3/logger_8hh.html#ac0cab847c7f1a7cd4b36be826c1aa7da',1,'logger.hh']]]
 ];

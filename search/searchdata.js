@@ -8,7 +8,7 @@ var indexSectionsWithContent =
   5: "cmz",
   6: "l",
   7: "eiw",
-  8: "hlw",
+  8: "ghlw",
   9: "bcfh"
 };
 
