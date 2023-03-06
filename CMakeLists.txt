@@ -8,11 +8,6 @@ project(
 	LANGUAGES CXX
 )
 
-find_package(OpenGL REQUIRED COMPONENTS OpenGL)
-find_package(SDL2 REQUIRED)
-find_package(GLEW REQUIRED)
-find_package(glm REQUIRED)
-
 add_subdirectory(utils)
 
 add_subdirectory(explorer)
@@ -29,7 +24,7 @@ add_custom_target(
 
 set(GENERATE_DOXYFILE ON CACHE BOOL "Generate documentation")
 
-if(GENERATE_DOXYFILE)
+if(NOT Emscripten)
 
 	find_package(Doxygen REQUIRED)
 	set(DOXYGEN_GENERATE_HTML YES)

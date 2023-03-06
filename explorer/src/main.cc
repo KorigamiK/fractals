@@ -1,7 +1,12 @@
-#include <GL/glew.h>
-#include <SDL2/SDL.h>
+#define GLM_FORCE_PURE
 
-#include <glm/gtc/type_ptr.hpp>
+#ifdef __EMSCRIPTEN__
+#include <GLES3/gl3.h>
+#include <emscripten.h>
+#else
+#include <GL/glew.h>
+#endif
+
 #include <string>
 
 #include "logger.hh"
@@ -29,14 +34,26 @@ auto main(int argc, const char* argv[]) -> int {
   glBindBuffer(GL_ARRAY_BUFFER, vbo);
   glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, nullptr);
 
+  auto mainLoop = [&window]() {
+    window.update();
+    window.clear();
+
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
+    window.swapBuffers();
+  };
+
+#ifdef __EMSCRIPTEN__
+  emscripten_set_main_loop_arg(
+      [](void* arg) {
+        auto loopFunc = reinterpret_cast<decltype(mainLoop)*>(arg);
+        (*loopFunc)();
+      },
+      &mainLoop, -1, 1);
+#else
   try {
     while (window.isRunning()) {
-      window.update();
-      window.clear();
-
-      glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-
-      window.swapBuffers();
+      mainLoop();
     }
   } catch (const std::exception& e) {
     Logger::error("Exception: %s", e.what());
@@ -46,6 +63,7 @@ auto main(int argc, const char* argv[]) -> int {
 
   glDeleteVertexArrays(1, &vao);
   glDeleteBuffers(1, &vbo);
+#endif
 
   return 0;
 }

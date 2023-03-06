@@ -1,6 +1,6 @@
-#version 460
+#version 300 es
 
-layout(location = 0) in vec2 a_position;
+in vec2 a_position;
 
 out vec2 v_texcoord;
 
