@@ -40,8 +40,8 @@ class Window {
          int width,
          int height,
          SceneData sceneData = {
-             .zoom = 1.0f,
-             .center = glm::vec2(0.0f, 0.0f),
+             .zoom = 0.4f,
+             .center = glm::vec2(-0.4f, 0.0f),
              .maxIterations = 100,
          });
 
