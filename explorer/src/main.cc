@@ -12,8 +12,8 @@
 #include "logger.hh"
 #include "window.hh"
 
-#define WIDTH 800
-#define HEIGHT 600
+#define WIDTH 480
+#define HEIGHT 360
 
 auto main(int argc, const char* argv[]) -> int {
   (void)argc;

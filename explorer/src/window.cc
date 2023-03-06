@@ -26,6 +26,7 @@ Window::Window(const std::string& title,
 
   SDL_WindowFlags flags = static_cast<SDL_WindowFlags>(
       SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+
   window = SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED,
                             SDL_WINDOWPOS_CENTERED, width, height, flags);
   if (!window) {
@@ -98,12 +99,14 @@ void Window::update() {
     shader->use();
   }
 }
-
 void Window::pollEvents() {
   static SDL_Event event;
 
   static bool isDragging = false;
+  static bool isPinching = false;
   static glm::vec2 dragStart(0.0f, 0.0f);
+  static glm::vec2 pinchStart(0.0f, 0.0f);
+  static float initialPinchDistance = 0.0f;
 
   while (SDL_PollEvent(&event)) {
     switch (event.type) {
@@ -176,6 +179,12 @@ void Window::pollEvents() {
             dragStart.x = static_cast<float>(event.button.x);
             dragStart.y = static_cast<float>(event.button.y);
             break;
+          case SDL_BUTTON_RIGHT:
+            isPinching = true;
+            pinchStart.x = static_cast<float>(event.button.x);
+            pinchStart.y = static_cast<float>(event.button.y);
+            initialPinchDistance = 0.0f;
+            break;
           default:
             break;
         }
@@ -183,14 +192,36 @@ void Window::pollEvents() {
 
       case SDL_MOUSEMOTION:
         if (isDragging) {
-          glm::vec2 currentMousePos = glm::vec2(event.motion.x, event.motion.y);
-          glm::vec2 delta = (currentMousePos - dragStart) /
-                            glm::vec2(width, height) / sceneData.zoom * 2.0f;
+          glm::vec2 currentPos(event.motion.x, event.motion.y);
+          glm::vec2 delta = (currentPos - dragStart) / glm::vec2(width, height);
           delta.y *= -1.0f;
-          sceneData.center -= delta;
-          dragStart = currentMousePos;
+          sceneData.center -= delta / sceneData.zoom;
           glUniform2f(uniformLocations.center, sceneData.center.x,
                       sceneData.center.y);
+          dragStart = currentPos;
+        } else if (isPinching && event.dgesture.numFingers >= 2) {
+          glm::vec2 currentPos(event.motion.x, event.motion.y);
+          glm::vec2 delta =
+              (currentPos - pinchStart) / glm::vec2(width, height);
+          delta.y *= -1.0f;
+          float pinchDistance = glm::length(delta);
+          if (initialPinchDistance == 0.0f) {
+            initialPinchDistance = pinchDistance;
+          } else {
+            float new_zoom =
+                sceneData.zoom * pinchDistance / initialPinchDistance;
+            glm::vec2 cursor_pos = glm::vec2(event.motion.x, event.motion.y) /
+                                       glm::vec2(width, height) * 2.0f -
+                                   1.0f;
+            cursor_pos.y *= -1.0f;
+            glm::vec2 center_offset =
+                cursor_pos / sceneData.zoom - cursor_pos / new_zoom;
+            sceneData.center += center_offset;
+            sceneData.zoom = new_zoom;
+            glUniform2f(uniformLocations.center, sceneData.center.x,
+                        sceneData.center.y);
+            glUniform1f(uniformLocations.zoom, sceneData.zoom);
+          }
         }
         break;
 
@@ -198,6 +229,9 @@ void Window::pollEvents() {
         switch (event.button.button) {
           case SDL_BUTTON_LEFT:
             isDragging = false;
+            break;
+          case SDL_BUTTON_RIGHT:
+            isPinching = false;
             break;
           default:
             break;
