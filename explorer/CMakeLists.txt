@@ -16,7 +16,7 @@ add_executable(Explorer ${SOURCES} ${HEADERS})
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Emscripten")
 
 	message(STATUS "Emscripten detected")
-	set(CMAKE_EXECUTABLE_SUFFIX ".html")
+	set(CMAKE_EXECUTABLE_SUFFIX ".js")
 	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Werror")
 	
 	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s USE_WEBGL2=1 -s WASM=1 -std=c++20 -s USE_SDL=2 -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s WARN_ON_UNDEFINED_SYMBOLS=1 -sASSERTIONS=1 --preload-file shaders") #

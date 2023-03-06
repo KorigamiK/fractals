@@ -59,11 +59,11 @@ auto main(int argc, const char* argv[]) -> int {
     Logger::error("Exception: %s", e.what());
   }
 
+#endif
   Logger::info("Exiting");
 
   glDeleteVertexArrays(1, &vao);
   glDeleteBuffers(1, &vbo);
-#endif
 
   return 0;
 }
