@@ -1,6 +1,7 @@
 #include "window.hh"
 
 #include <glm/glm.hpp>
+#include "load_image.hh"
 
 Window::Window(const std::string& title,
                int width,
@@ -21,7 +22,8 @@ Window::Window(const std::string& title,
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+  // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
+  // SDL_GL_CONTEXT_PROFILE_ES);
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
   SDL_WindowFlags flags = static_cast<SDL_WindowFlags>(
@@ -66,16 +68,38 @@ Window::Window(const std::string& title,
   glViewport(0, 0, width, height);
   shader->use();
 
+  // load the 1D palette texture
+  int texW, texH;
+  unsigned char* image = loadPPM("shaders/palette.ppm", &texW, &texH);
+  if (image == nullptr) {
+    Logger::error("Could not load shaders/palette.ppm");
+    SDL_GL_DeleteContext(glContext);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    exit(1);
+  }
+  GLuint textureID;
+  glGenTextures(1, &textureID);
+  glBindTexture(GL_TEXTURE_1D, textureID);
+  glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+  glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+  glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+  glTexImage1D(GL_TEXTURE_1D, 0, GL_RGB, width, 0, GL_RGB, GL_UNSIGNED_BYTE,
+               image);
+  delete[] image;
+
   // Get uniform locations
   uniformLocations.zoom = shader->getUniformLocation("u_zoom");
   uniformLocations.center = shader->getUniformLocation("u_center");
   uniformLocations.maxIterations =
       shader->getUniformLocation("u_max_iterations");
+  uniformLocations.palette = shader->getUniformLocation("u_palette");
 
   // Set initial uniform values
   glUniform1f(uniformLocations.zoom, sceneData.zoom);
   glUniform2f(uniformLocations.center, sceneData.center.x, sceneData.center.y);
   glUniform1i(uniformLocations.maxIterations, sceneData.maxIterations);
+  glUniform1i(uniformLocations.palette, 0);
 }
 
 Window::~Window() {

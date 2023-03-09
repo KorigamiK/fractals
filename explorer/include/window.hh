@@ -20,6 +20,7 @@ struct UniformLocations {
   GLint zoom;
   GLint center;
   GLint maxIterations;
+  GLint palette;
 };
 
 class Window {
@@ -62,4 +63,8 @@ class Window {
   int getHeight() const { return height; }
 
   bool isRunning() const { return running; }
+
+  const UniformLocations& getUniformLocations() const {
+    return uniformLocations;
+  }
 };

@@ -1,4 +1,4 @@
-#version 300 es
+#version 330 core
 
 precision highp float;
 
@@ -8,6 +8,7 @@ in vec2 v_texcoord;
 uniform vec2 u_center;
 uniform float u_zoom;
 uniform int u_max_iterations;
+uniform sampler1D u_palette;
 
 void main() {
   vec2 c = vec2(v_texcoord.x - 0.5, v_texcoord.y - 0.5) / u_zoom + u_center;
@@ -20,5 +21,5 @@ void main() {
     z = z_new;
   }
   float t = float(i) / float(u_max_iterations);
-  out_color = vec4(t, t, t, 1.0);
+  out_color = texture(u_palette, t) * 0.5;
 }
